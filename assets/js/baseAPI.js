@@ -1,7 +1,21 @@
-// ajax每次发起请求都会先调用这个函数
-//可以拦截到每次的ajax请求
+// 每次调用ajax请求之前都会调用这个
 $.ajaxPrefilter(function(options) {
-    //统一拼接请求的根路径
-    options.url = 'http://www.liulongbin.top:3008' + options.url;
-    console.log(options.url)
+    options.url = `http://www.liulongbin.top:3008${options.url}`
+
+    //统一为有权限的接口(/my)设置headers请求头
+    //判断是否是有权限的请求还是普通请求
+    if (options.url.includes('/my/')) {
+        options.headers = {
+            Authorization: localStorage.getItem('token') || ''
+        }
+    }
+
+    //挂载权限回调
+    options.complete = function(res) {
+        if (res.responseJSON.code === 1) {
+            localStorage.removeItem('token');
+            location.href = './login.html';
+        }
+        //console.log(res)
+    }
 })
