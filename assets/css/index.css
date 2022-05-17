@@ -1,0 +1,69 @@
+.layui-footer {
+    text-align: center;
+    font-size: 12px;
+}
+
+.layui-nav .layui-icon {
+    color: white;
+    font-size: 20px;
+}
+
+.layui-side-scroll .layui-nav-item a .layui-icon {
+    color: white;
+    margin-right: 10px;
+}
+
+.layui-side-scroll .layui-nav-item .layui-nav-child .layui-icon {
+    margin-left: 20px;
+}
+
+.layui-body {
+    overflow: hidden;
+}
+
+.layui-body iframe {
+    width: 100%;
+    height: 100%;
+}
+
+a {
+    transition: none!important;
+}
+
+.userinfo {
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    user-select: none;
+}
+
+.layui-side .userinfo {
+    border-bottom: 2px solid #282b33;
+}
+
+.layui-side .userinfo #welcome #user_name {
+    color: white;
+    margin-left: 5px;
+}
+
+.layui-nav .text-avatar,
+.layui-side .text-avatar {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-color: skyblue;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+    color: white;
+    margin-right: 10px;
+}
+
+.layui-nav .layui-nav-img,
+.layui-side .layui-nav-img {
+    width: 40px;
+    height: 40px;
+    vertical-align: middle;
+    display: none;
+}
