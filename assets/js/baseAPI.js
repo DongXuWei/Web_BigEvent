@@ -13,9 +13,8 @@ $.ajaxPrefilter(function(options) {
     //挂载权限回调
     options.complete = function(res) {
         if (res.responseJSON.code === 1) {
-            localStorage.removeItem('token');
             location.href = './login.html';
+            localStorage.removeItem('token');
         }
-        //console.log(res)
     }
 })
