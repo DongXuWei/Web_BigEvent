@@ -12,7 +12,8 @@ $.ajaxPrefilter(function(options) {
 
     //挂载权限回调
     options.complete = function(res) {
-        if (res.responseJSON.code === 1) {
+        if (res.responseJSON.code == 1 && res.responseJSON.message == '身份认证失败！') {
+            //console.log(res.responseJSON)
             location.href = './login.html';
             localStorage.removeItem('token');
         }

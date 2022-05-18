@@ -47,15 +47,15 @@ $(function() {
 
         //调用接口，上传头像
         $.ajax({
-            type: "PATCH",
+            method: "PATCH",
             url: '/my/update/avatar',
             data: dataURL,
             success(res) {
                 console.log(res)
-                    // if (res.code !== 0) {
-                    //     return layui.layer.msg(res.message);
-                    // }
-                    // layui.layer.msg(res.message);
+                if (res.code !== 0) {
+                    return layui.layer.msg(res.message);
+                }
+                layui.layer.msg(res.message);
 
                 //更新用户信息
                 window.parent.getUserInfo();

@@ -29,7 +29,7 @@ $(function() {
             success(res) {
                 //有问题
                 if (res.code !== 0) {
-                    return layui.layer.msg(res.message)
+                    return layui.layer.msg(res.message);
                 }
                 layui.layer.msg(res.message)
                 console.log(res)
