@@ -50,7 +50,9 @@ $(function() {
         $.ajax({
             method: "PATCH",
             url: '/my/update/avatar',
-            data: dataURL,
+            data: {
+                avatar: dataURL
+            },
             success(res) {
                 console.log(res)
                 if (res.code !== 0) {
