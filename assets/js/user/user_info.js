@@ -39,7 +39,6 @@ function initUserInfo() {
     $.ajax({
         method: 'GET',
         url: '/my/userinfo',
-        data: $(this).serialize(),
         success(res) {
             if (res.code !== 0) {
                 return layui.layer.msg(res.message)
