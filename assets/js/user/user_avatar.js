@@ -1,4 +1,5 @@
 $(function() {
+    let layer = layui.layer;
     // 1.1 获取裁剪区域的 DOM 元素
     var $image = $('#image')
         // 1.2 配置选项
@@ -23,7 +24,7 @@ $(function() {
         let filelist = e.target.files;
         //console.log(filelist)
         if (filelist.length === 0) {
-            return layui.layer.msg('取消了上传头像')
+            return layer.msg('取消了上传头像')
         }
         //拿到用户选择的第一个文件
         let file = e.target.files[0];
@@ -53,9 +54,9 @@ $(function() {
             success(res) {
                 console.log(res)
                 if (res.code !== 0) {
-                    return layui.layer.msg(res.message);
+                    return layer.msg(res.message);
                 }
-                layui.layer.msg(res.message);
+                layer.msg(res.message);
 
                 //更新用户信息
                 window.parent.getUserInfo();
