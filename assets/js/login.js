@@ -42,7 +42,10 @@ $(function() {
                     return layui.layer.msg(res.message)
                 }
                 //console.log(res)
-                $('#link_login').click();
+                layui.layer.msg(res.message)
+                setTimeout(() => {
+                    $('#link_login').click();
+                }, 2000)
             }
         })
     })
@@ -58,8 +61,9 @@ $(function() {
                 if (res.code !== 0) {
                     return layui.layer.msg(res.message)
                 }
-                // console.log(res.token);
-                //存储token 用于访问有权限的接口
+                layui.layer.msg(res.message)
+                    // console.log(res.token);
+                    //存储token 用于访问有权限的接口
                 localStorage.setItem('token', res.token);
                 location.href = './index.html';
             }
