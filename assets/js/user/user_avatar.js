@@ -39,7 +39,7 @@ $(function() {
 
     //绑定提交事件
     $('#btn_upload').on('click', function() {
-        let dataURL = $image
+        const dataURL = $image
             .cropper('getCroppedCanvas', { // 创建一个 Canvas 画布
                 width: 100,
                 height: 100

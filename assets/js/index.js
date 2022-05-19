@@ -37,9 +37,10 @@ function renderAvatar(user) {
     let name = user.nickname || user.username;
     $('#user_name').html(name);
     //渲染用户头像
-    if (user.user_pic !== null) {
+    if (user.user_pic) {
         //有头像
-        $('#layui-nav-img').attr('src', user.user_pic).show();
+        $('.layui-nav-img').attr('src', user.user_pic).show();
+        $('.text-avatar').hide()
     } else {
         let first = name[0].toUpperCase();
         $('.text-avatar').html(first).show();
