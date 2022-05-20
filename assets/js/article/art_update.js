@@ -1,6 +1,6 @@
 $(function() {
     initCate();
-    // initEditor();
+    initEditor();
 
     //1、动态渲染文章类别
     function initCate() {
@@ -56,40 +56,11 @@ $(function() {
         art_state = '草稿';
     })
 
-    //监听表单的提交事件
-    $('#pubart').on('submit', function(e) {
-        e.preventDefault();
-        //基于form表单快速创建一个form对象
-        let fd = new FormData($(this)[0]);
-        fd.append('state', art_state);
-
-        //将封面裁剪后的图片转化为文件对象
-        $image
-            .cropper('getCroppedCanvas', { // 创建一个 Canvas 画布
-                width: 400,
-                height: 280
-            })
-            .toBlob(function(blob) { // 将 Canvas 画布上的内容，转化为文件对象
-                // 得到文件对象后，进行后续的操作
-                //将文件对象存储到fd中
-                fd.append('cover_img', blob);
-                //发起请求
-                publishArticle(fd);
-            })
-    });
-
-
-
-
-
-
-
-
-
     //编辑文章 点击编辑的时候
     // 拿到缓存中的数据
     let result = JSON.parse(localStorage.getItem('result'))
     console.log(result);
+    $('#main').html(result.content);
     //* id：文章 id
     //* title:标题
     //* content：内容
@@ -98,13 +69,14 @@ $(function() {
     //* state：状态
     // cate_id：所属id分类
 
+
+    //渲染数据
     layui.form.val('formData', result);
     console.log(result.cate_name);
     //根据获取到的分类id让其选中
     let optionId = result.cate_id;
     console.log(optionId)
     $("#selectId option[value=" + optionId + "]").attr("selected", true);
-
 
     //定义更新文章的方法
     function publishArticle(fd) {
@@ -128,4 +100,27 @@ $(function() {
             }
         })
     }
+
+    //监听表单的提交事件
+    $('#pubart').on('submit', function(e) {
+        e.preventDefault();
+        //基于form表单快速创建一个form对象
+        let fd = new FormData($(this)[0]);
+        fd.append('state', art_state);
+
+        //将封面裁剪后的图片转化为文件对象
+        $image
+            .cropper('getCroppedCanvas', { // 创建一个 Canvas 画布
+                width: 400,
+                height: 280
+            })
+            .toBlob(function(blob) { // 将 Canvas 画布上的内容，转化为文件对象
+                // 得到文件对象后，进行后续的操作
+                //将文件对象存储到fd中
+                fd.append('cover_img', blob);
+                //发起请求
+                publishArticle(fd);
+            })
+    });
+
 })
