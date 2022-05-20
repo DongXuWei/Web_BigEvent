@@ -43,9 +43,9 @@
                 <thead>
                     <tr>
                         <th>文章标题</th>
+                        <th>发布时间</th>
+                        <th>发布状态</th>
                         <th>文章分类</th>
-                        <th>发表时间</th>
-                        <th>状态</th>
                         <th>操作</th>
                     </tr>
                 </thead>
@@ -67,7 +67,7 @@
             <td>{{$value.state}}</td>
             <td>{{$value.cate_name}}</td>
             <td>
-                <button type="button" data-id="{{$value.id}}" class="layui-btn layui-btn-xs" id="btn_edit">编辑</button>
+                <button type="button" data-id="{{$value.id}}" class="layui-btn layui-btn-xs btn_edit">编辑</button>
                 <button type="button" class="layui-btn layui-btn-xs layui-btn-danger" data-id="{{$value.id}}" id="btn_del">删除</button>
             </td>
 

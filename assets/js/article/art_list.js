@@ -149,4 +149,30 @@ $(function() {
             layui.layer.close(index);
         })
     });
+
+    //点击编辑文章
+    $('body').on('click', '.btn_edit', function() {
+        let id = $(this).attr('data-id'); //拿到id
+        //根据id拿到数据
+        $.ajax({
+            method: 'GET',
+            url: '/my/article/info?id=' + id,
+            success(res) {
+                if (res.code !== 0) {
+                    return layui.layer.msg(res.message)
+                }
+                //成功
+                let data = JSON.stringify(res.data);
+                //将拿到的数据存储在缓存中
+                localStorage.setItem('result', data);
+                // console.log(res.data);
+
+                //跳转页面
+                location.href = '../article/art_update.html';
+            }
+        })
+
+    })
+
+
 })

@@ -1,6 +1,6 @@
 $(function() {
     initCate();
-    initEditor();
+    // initEditor();
 
     //1、动态渲染文章类别
     function initCate() {
@@ -77,17 +77,48 @@ $(function() {
                 publishArticle(fd);
             })
     });
-    //定义发布文章的方法
+
+
+
+
+
+
+
+
+
+    //编辑文章 点击编辑的时候
+    // 拿到缓存中的数据
+    let result = JSON.parse(localStorage.getItem('result'))
+    console.log(result);
+    //* id：文章 id
+    //* title:标题
+    //* content：内容
+    //* cover_img:封面url地址
+    // pub_date：发表时间
+    //* state：状态
+    // cate_id：所属id分类
+
+    layui.form.val('formData', result);
+    console.log(result.cate_name);
+    //根据获取到的分类id让其选中
+    let optionId = result.cate_id;
+    console.log(optionId)
+    $("#selectId option[value=" + optionId + "]").attr("selected", true);
+
+
+    //定义更新文章的方法
     function publishArticle(fd) {
         $.ajax({
-            method: 'POST',
-            url: '/my/article/add',
+            method: 'PUT',
+            url: '/my/article/info',
             //如果向服务器提交formData数据
             //必须添加以下两个配置项
             data: fd,
             contentType: false,
             processData: false,
             success(res) {
+                console.log('------------')
+                console.log(res)
                 if (res.code !== 0) {
                     return layui.layer.msg(res.message)
                 }
@@ -95,7 +126,6 @@ $(function() {
                 //跳转到文章列表页面
                 location.href = '../article/art_list.html'
             }
-
         })
     }
 })

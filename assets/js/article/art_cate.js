@@ -9,7 +9,7 @@ $(function() {
                 if (res.code !== 0) {
                     return layui.layer.msg(res.message)
                 }
-                console.log(res)
+                // console.log(res)
                 layui.layer.msg(res.message)
                 let strHtml = template('tpl_table', res)
 
