@@ -56,29 +56,55 @@ $(function() {
         art_state = '草稿';
     })
 
+
+
     //编辑文章 点击编辑的时候
     // 拿到缓存中的数据
     let result = JSON.parse(localStorage.getItem('result'))
+    console.log("================");
     console.log(result);
-    $('#main').html(result.content);
-    //* id：文章 id
-    //* title:标题
-    //* content：内容
-    //* cover_img:封面url地址
-    // pub_date：发表时间
-    //* state：状态
-    // cate_id：所属id分类
+    // $('#main').html(result.content);
 
+    console.log('--------------------------')
+
+    let id = JSON.parse(localStorage.getItem('id'))
+    console.log(id)
+
+    $.ajax({
+        method: 'GET',
+        url: '/my/article/info?id=' + id,
+        success(res) {
+            if (res.code !== 0) {
+                return layui.layer.msg(res.message)
+            }
+            //成功
+            console.log(res.data);
+            // cate_id
+            //老叶
+            // $('[name=cate_id]').val(res.data.cate_id);
+            // $('[name=title]').val(res.data.title)
+            //     // console.log(result.title)
+            // $('[name=content]').val(res.data.content)
+
+            layui.form.val('formData', res.data);
+        }
+    })
+
+    // $('[name=cate_id]').val(result.cate_id);
+    // //console.log(result.cate_id)
+    // $('[name=title]').val(result.title)
+    //     // console.log(result.title)
+    // $('[name=content]').val(result.content)
 
     //渲染数据
-    layui.form.val('formData', result);
-    console.log(result.cate_name);
-    //根据获取到的分类id让其选中
-    let optionId = result.cate_id;
-    console.log(optionId)
-    $("#selectId option[value=" + optionId + "]").attr("selected", true);
+    // layui.form.val('formData', result);
 
-    //定义更新文章的方法
+    //console.log(result.cate_name);
+    //根据获取到的分类id
+    let optionId = result.cate_id;
+    //console.log(optionId);
+
+    //更新文章
     function publishArticle(fd) {
         $.ajax({
             method: 'PUT',

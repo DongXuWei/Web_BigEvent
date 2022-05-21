@@ -161,10 +161,14 @@ $(function() {
                 if (res.code !== 0) {
                     return layui.layer.msg(res.message)
                 }
+                // console.log(res.data.id)
+                localStorage.setItem('id', res.data.id);
                 //成功
                 let data = JSON.stringify(res.data);
+                // console.log(data)
                 //将拿到的数据存储在缓存中
                 localStorage.setItem('result', data);
+
                 // console.log(res.data);
 
                 //跳转页面

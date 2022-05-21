@@ -18,7 +18,6 @@
         <div class="layui-card-body">
             <!-- 发表文章的表单 -->
             <form class="layui-form" lay-filter="formData" id="pubart">
-                <!-- <input type="numbrt" name='id'> -->
                 <!-- 文章标题 -->
                 <input type="hidden" name="id">
                 <div class="layui-form-item">
@@ -80,7 +79,7 @@
 
     <!-- 定义文章类别的模板结构 -->
     <script type="text/html" id='tpl-pub'>
-        <option value="">请选择文章类别</option>
+        <option value="" selected>请选择文章类别</option>
         {{each data}}
         <option value="{{$value.id}}">{{$value.cate_name}}</option>
         {{/each}}
